@@ -15,3 +15,6 @@ docs/Rúbrica de Evaluación.pdf
 
 # Editable manual source (only the PDF is published)
 docs/*.docx
+
+# Personal presentation script
+docs/guion-presentacion.md
