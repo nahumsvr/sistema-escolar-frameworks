@@ -9,3 +9,6 @@ docs/Rúbrica de Evaluación.pdf
 
 # Local agent tooling cache
 .atl/
+
+# Word lock files
+~$*
