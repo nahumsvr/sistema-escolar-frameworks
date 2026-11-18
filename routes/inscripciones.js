@@ -25,6 +25,39 @@ router.get('/', async (req, res) => {
 
 /**
  * @swagger
+ * /api/inscripciones/{id}:
+ *   get:
+ *     summary: Obtiene una inscripción por su id
+ *     tags: [Inscripciones]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Inscripción encontrada.
+ *       404:
+ *         description: Inscripción no encontrada.
+ *       500:
+ *         description: Error al consultar la BD.
+ */
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultado = await db.query('SELECT * FROM inscripciones WHERE id = $1', [id]);
+        if (resultado.rowCount === 0) {
+            return res.status(404).json({ mensaje: "Inscripción no encontrada" });
+        }
+        res.status(200).json(resultado.rows[0]);
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al consultar la BD" });
+    }
+});
+
+/**
+ * @swagger
  * /api/inscripciones:
  *   post:
  *     summary: Inscribe un alumno a una materia

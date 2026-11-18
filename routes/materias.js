@@ -25,6 +25,39 @@ router.get('/', async (req, res) => {
 
 /**
  * @swagger
+ * /api/materias/{id}:
+ *   get:
+ *     summary: Obtiene una materia por su id
+ *     tags: [Materias]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Materia encontrada.
+ *       404:
+ *         description: Materia no encontrada.
+ *       500:
+ *         description: Error al consultar la BD.
+ */
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultado = await db.query('SELECT * FROM materias WHERE id = $1', [id]);
+        if (resultado.rowCount === 0) {
+            return res.status(404).json({ mensaje: "Materia no encontrada" });
+        }
+        res.status(200).json(resultado.rows[0]);
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al consultar la BD" });
+    }
+});
+
+/**
+ * @swagger
  * /api/materias:
  *   post:
  *     summary: Registra una materia

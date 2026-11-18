@@ -33,4 +33,4 @@ database.sql     Creación de tablas e inserción de datos
 | Alumnos | `/api/alumnos` |
 | Inscripciones | `/api/inscripciones` |
 
-Cada ruta tiene `GET /`, `POST /`, `PUT /:id` y `DELETE /:id`.
+Cada ruta tiene `GET /`, `GET /:id`, `POST /`, `PUT /:id` y `DELETE /:id`.

@@ -25,6 +25,39 @@ router.get('/', async (req, res) => {
 
 /**
  * @swagger
+ * /api/alumnos/{id}:
+ *   get:
+ *     summary: Obtiene un alumno por su id
+ *     tags: [Alumnos]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Alumno encontrado.
+ *       404:
+ *         description: Alumno no encontrado.
+ *       500:
+ *         description: Error al consultar la BD.
+ */
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultado = await db.query('SELECT * FROM alumnos WHERE id = $1', [id]);
+        if (resultado.rowCount === 0) {
+            return res.status(404).json({ mensaje: "Alumno no encontrado" });
+        }
+        res.status(200).json(resultado.rows[0]);
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al consultar la BD" });
+    }
+});
+
+/**
+ * @swagger
  * /api/alumnos:
  *   post:
  *     summary: Registra un alumno

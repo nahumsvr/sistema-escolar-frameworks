@@ -25,6 +25,39 @@ router.get('/', async (req, res) => {
 
 /**
  * @swagger
+ * /api/profesores/{id}:
+ *   get:
+ *     summary: Obtiene un profesor por su id
+ *     tags: [Profesores]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Profesor encontrado.
+ *       404:
+ *         description: Profesor no encontrado.
+ *       500:
+ *         description: Error al consultar la BD.
+ */
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultado = await db.query('SELECT * FROM profesores WHERE id = $1', [id]);
+        if (resultado.rowCount === 0) {
+            return res.status(404).json({ mensaje: "Profesor no encontrado" });
+        }
+        res.status(200).json(resultado.rows[0]);
+    } catch (error) {
+        res.status(500).json({ mensaje: "Error al consultar la BD" });
+    }
+});
+
+/**
+ * @swagger
  * /api/profesores:
  *   post:
  *     summary: Registra un profesor
