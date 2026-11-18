@@ -6,3 +6,6 @@ docs/Asignación y Estructura de Bases de Datos por Tema.pdf
 docs/Guía y Requisitos de entrega.pdf
 docs/Lineamientos de la Presentación.pdf
 docs/Rúbrica de Evaluación.pdf
+
+# Local agent tooling cache
+.atl/

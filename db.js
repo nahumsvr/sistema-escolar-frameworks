@@ -1,7 +1,3 @@
-// =================================================================
-// CONFIGURACIÓN CENTRALIZADA DE LA BASE DE DATOS (db.js)
-// =================================================================
-
 // 1. IMPORTACIÓN
 // Extraemos únicamente la herramienta 'Pool' de la librería 'pg'.
 const { Pool, types } = require('pg');
