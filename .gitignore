@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+
+# Course documents (not part of the source code)
+docs/Asignación y Estructura de Bases de Datos por Tema.pdf
+docs/Guía y Requisitos de entrega.pdf
+docs/Lineamientos de la Presentación.pdf
+docs/Rúbrica de Evaluación.pdf
