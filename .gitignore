@@ -12,3 +12,6 @@ docs/Rúbrica de Evaluación.pdf
 
 # Word lock files
 ~$*
+
+# Editable manual source (only the PDF is published)
+docs/*.docx
